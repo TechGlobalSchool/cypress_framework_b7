@@ -135,6 +135,7 @@ describe('CSS Locators', () => {
 
 
         cy.get('#checkbox_1').check()
+
         cy.get('input:checked')
 
         cy.get('option:selected')
