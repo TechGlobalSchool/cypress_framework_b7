@@ -86,5 +86,62 @@ describe('CSS Locators', () => {
         cy.visit('https://techglobal-training.com/frontend/html-elements')
 
         cy.get('[class="radio"] > input')
+
+        cy.get('[class="radio"] input')
+
+
+    })
+
+     /**
+     * TEST CASE 1
+     * Go to https://techglobal-training.com/frontend/dynamic-elements
+     * Locate the below box is displayed
+     * Box 1
+     * 
+     * TEST CASE 2
+     * Go to https://techglobal-training.com/frontend/dynamic-elements
+     * Locate the below box is displayed
+     * Box 2
+     */
+
+    it('Dynamic elements test case', () => {
+
+
+        /**]
+         * => [class*="className"] (contains)
+         * => ^ (starts-with)
+         * => $ (ends-with)
+         */
+
+        cy.visit('https://techglobal-training.com/frontend/dynamic-elements')
+
+        cy.get('[id^="box_1_"]').should('be.visible')
+        cy.get('[id^="box_2_"]').should('be.visible')
+        
+    })
+
+
+
+    it.only('CSS Locators - Pseudo-classes', () => {
+
+        cy.visit('https://techglobal-training.com/frontend/html-elements')
+
+
+        cy.get('#ordered_list li')
+
+        cy.get('#ordered_list li:last-child')
+        cy.get('#ordered_list li:first-child')
+        cy.get('#ordered_list li:nth-child(1)')
+
+
+        cy.get('#checkbox_1').check()
+        cy.get('input:checked')
+
+        cy.get('option:selected')
+
+        //NOTE: You can practice below locator using below URL
+        // cy.visit('https://techglobal-training.com/js-exercises/js-output')
+        // cy.get('.explanation.content > p + ul > li:first-child')
+        
     })
 })
