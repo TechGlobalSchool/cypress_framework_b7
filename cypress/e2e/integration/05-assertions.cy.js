@@ -70,12 +70,11 @@ describe('Cypress Assertions', () => {
 
 
 
-        cy.get('#hello_paragraph').should('have.text', 'Hello World!')
-        cy.get('#hello_paragraph').should('have.attr', 'id', 'hello_paragraph')
-        cy.get('#hello_paragraph').should('be.visible')
+        // cy.get('#hello_paragraph').should('have.text', 'Hello World!')
+        // cy.get('#hello_paragraph').should('have.attr', 'id', 'hello_paragraph')
+        // cy.get('#hello_paragraph').should('be.visible')
 
-
-
+        
         cy.get('#hello_paragraph').should('have.text', 'Hello World!')
         .and('have.attr', 'id', 'hello_paragraph')
         .and('be.visible')
