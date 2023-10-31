@@ -136,7 +136,7 @@ describe("Practices", () => {
      */
 
     cy.visit("https://techglobal-training.com/frontend");
-    cy.get(".cards").contains("Dropdowns").click();
+    cy.clickCard('Html Elements')
 
     const product = 'MacBook Pro 13'
     const color = 'Green'

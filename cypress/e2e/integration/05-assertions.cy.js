@@ -4,7 +4,7 @@ describe('Cypress Assertions', () => {
 
         // This will fail if the page doesn't send text/html with a 200 status
         cy.visit('https://techglobal-training.com/frontend')
-        cy.get('.cards').contains('Html Elements').click()
+        cy.clickCard('Html Elements')
 
         cy
         // there is a default assertion that this
@@ -25,7 +25,6 @@ describe('Cypress Assertions', () => {
     it('Implicit Assertions', () => {
 
         cy.visit('https://techglobal-training.com/frontend')
-        cy.get('.cards').contains('Html Elements').click()
 
         // Any assertion we do using .should() method, is an "Implicit Assertion"
 
@@ -91,10 +90,10 @@ describe('Cypress Assertions', () => {
     })
 
 
-    it.only('Explicit Assertions', () => {
+    it('Explicit Assertions', () => {
 
         cy.visit('https://techglobal-training.com/frontend')
-        cy.get('.cards').contains('Html Elements').click()
+        cy.clickCard('Html Elements')
 
         // Any assertion we do using .should() method, is an "Implicit Assertion"
 
@@ -153,8 +152,91 @@ describe('Cypress Assertions', () => {
             cy.wrap($el).should('have.text', 'Html Elements')
             cy.wrap($el.text()).should('eq', 'Html Elements')
         })
-
 })
 
+    it.only('More explicit assertions - Validate Multiple elements', () => {
+
+        cy.visit('https://techglobal-training.com/frontend')
+        cy.clickCard('Html Elements')
+
+        // If we want to validate multiple web elements, normally we would do this.
+        cy.get('#hello_paragraph').should('be.visible').and('have.text', 'Hello World!')
+        cy.get('#testing_paragraph').should('be.visible').and('have.text', 'I like automation testing!')
+
+        // Or, we can locate the above elements in a single locator that we need to validate
+        cy.contains('Paragraphs').nextAll().as('paragraphHeader')
+
+        // By indexing, we can validate these elements using eq(), first() or last()
+        cy.get('@paragraphHeader').first().should('have.text','Hello World!')
+        cy.get('@paragraphHeader').last().should('have.text','I like automation testing!')
+
+        cy.get('@paragraphHeader').first().should("have.text","Hello World!").next().should("have.text","I like automation testing!")
+
+        const arr = ['Hello World!', 'I like automation testing!']
+
+        // And we can loop through using fori loop by their index - NOT A PREFERRED WAY
+        for(let i = 0; i < arr.length; i++){
+            cy.get('@paragraphHeader').eq(i).should("have.text",arr[i])
+        }
+
+        // We can assert these using each() and validate using explicit assertion
+        cy.get('@paragraphHeader').each(($el, index) => {
+            cy.log($el.text())
+            expect($el.text()).to.equal(arr[index])
+            expect($el).to.be.visible
+        })
+
+        // Utilizing the wrap approach for multiple assertions
+        cy.get('@paragraphHeader').each(($el, index) => {
+            // To enable further chaining with Cypress commands, re-wrap the element using cy.wrap()
+            // This allows for the continuious of implicit assertions
+            cy.wrap($el).should('have.text', arr[index]).and('be.visible')
+
+            // Howeever, it is important to note that if he ext is directly retrieved from the element as a string
+            // the nature of the content changes from web element to plain STRING
+            // In essence, assertions should adapt to use 'eq' instead of 'have.text'
+            // Additionally, since the content is no longer a web element
+            // furhter chaining with web element-specific commands, such as 'be.visible.' is not gonna work.
+            cy.wrap($el.text()).should('eq', arr[index])
+        })
+
+
+
+        /**
+         * 1. On the Html Elements page
+         * 2. From the "Headings" section, locate both "Programming Languages" and "Automation Tools" web elements
+         * 3. Validate their texts with expected text
+         * 4. Validate these elements are visible.
+         */
+
+        cy.contains('Headings').nextAll().as('headingElements')
+
+        const headingTexts = ['Programming Languages', 'Automation Tools']
+
+        cy.get('@headingElements').each(($el, index) => {
+            expect($el.text()).to.equal(headingTexts[index])
+            expect($el).to.be.visible
+            cy.log($el)
+            cy.log($el.text())
+            cy.wrap($el).should('have.text', headingTexts[index]).and('be.visible')
+        })
+
+
+        /**
+         * 1. On the Html Elements page
+         * 2. From the "Checkboxes" section, locate all checkboxes
+         * 3. Validate their texts with expected text
+         * 4. Validate checkboxes are visible, and enabled
+         */
+
+        cy.contains("Checkboxes").nextAll().as("Checkboxes")
+        
+        const boxes = ["Apple", "Microsoft", "Tesla"]
+        
+        cy.get('#checkbox-button-group > div').each(($el, index) => {
+            cy.wrap($el).find('label').should('have.text', boxes[index])
+            cy.wrap($el).find('input').should('be.visible').and('be.enabled')
+        })
+    })
 
 })
