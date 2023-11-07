@@ -3,7 +3,7 @@
 describe('Custom Commands', () => {
 
     it('Parent Command', () => {
-        cy.visit("https://techglobal-training.com/frontend");
+        cy.visit(`${Cypress.env('SITE_URL')}/frontend`);
         cy.clickCard("Html Elements");
 
         cy.login('Tech', 'Global')
@@ -13,13 +13,18 @@ describe('Custom Commands', () => {
     })
 
     it('Child Command', () => {
-        cy.visit("https://techglobal-training.com/frontend");
+        cy.visit(`${Cypress.env('SITE_URL')}/frontend`);
         cy.clickCard("Html Elements");
 
         cy.get('#main_heading').then(($el) => {
             cy.log($el.text())
         })
 
-        cy.get('#main_heading').logText()
+        cy.get('#main_heading').logText().haveText('Html Elements')
+
+
+        cy.get('#main_heading').assertAttribute('id', 'main_heading')
+
+        cy.haveText2('#main_heading', 'Html Elements')
     })
 })
