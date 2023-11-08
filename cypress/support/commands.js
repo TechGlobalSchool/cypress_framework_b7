@@ -33,6 +33,14 @@ Cypress.Commands.add('haveText2', (selector, value) => {
     cy.get(selector).should('have.text', value)
 })
 
+Cypress.Commands.add('checkOptionValidateOthers',(option, expectedText) => {
+    cy.contains(option).find("input").check().should("be.checked");
+
+    expectedText.filter((opt) => opt !== option).forEach((unchecked) => {
+        cy.contains(unchecked).find("input").should("not.be.checked");
+      });
+  });
+
 /**
  * 	IMPORTANT NOTE
  * 	
