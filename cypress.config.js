@@ -13,5 +13,6 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   specPattern: 'cypress/e2e/integration/*.cy.{js,jsx,ts,tsx}',
+  baseUrl: 'https://techglobal-training.com'
   },
 });

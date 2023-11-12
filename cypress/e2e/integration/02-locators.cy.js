@@ -1,8 +1,12 @@
 describe('CSS Locators', () => {
 
+    beforeEach(() => {
+        cy.visit("https://techglobal-training.com/frontend/html-elements");
+  
+    })
+
     it('Understanding CSS Syntax - Locating using Tags', () => {
 
-        cy.visit('https://techglobal-training.com/frontend/html-elements')
 
         cy.get('button')
 
@@ -16,7 +20,6 @@ describe('CSS Locators', () => {
 
     it('Understanding CSS Syntax - Locating using class and id', () => {
 
-        cy.visit('https://techglobal-training.com/frontend/html-elements')
 
         cy.get('#hello_paragraph')
         cy.get('#testing_paragraph')
@@ -26,7 +29,6 @@ describe('CSS Locators', () => {
 
     it('Understanding CSS Syntax - Locating web elements with its multiple attributes', () => {
 
-        cy.visit('https://techglobal-training.com/frontend/html-elements')
 
         cy.get('button.is-inline')
         cy.get('label.is-inline')
@@ -37,7 +39,6 @@ describe('CSS Locators', () => {
 
     it('Understanding CSS Syntax - Locating child, descendant, adjacent web elements', () => {
 
-        cy.visit('https://techglobal-training.com/frontend/html-elements')
 
         /**
          * Child Selector (>) *
@@ -83,7 +84,6 @@ describe('CSS Locators', () => {
 
     it('Understanding CSS Syntax - Attribute locators', () => {
 
-        cy.visit('https://techglobal-training.com/frontend/html-elements')
 
         cy.get('[class="radio"] > input')
 
@@ -122,9 +122,8 @@ describe('CSS Locators', () => {
 
 
 
-    it.only('CSS Locators - Pseudo-classes', () => {
+    it.skip('CSS Locators - Pseudo-classes', () => {
 
-        cy.visit('https://techglobal-training.com/frontend/html-elements')
 
 
         cy.get('#ordered_list li')

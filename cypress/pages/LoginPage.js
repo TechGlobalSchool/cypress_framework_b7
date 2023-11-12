@@ -17,7 +17,7 @@ class LoginPage {
     }
 
     clickLoginButton(){
-        this.getLoginButton.click()
+        this.getLoginButton().click()
     }
 
 

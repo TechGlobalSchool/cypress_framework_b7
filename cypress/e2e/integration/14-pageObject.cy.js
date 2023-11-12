@@ -2,6 +2,13 @@ import LoginPage from "../../pages/LoginPage";
 
 describe('Login page test', () => {
 
+    beforeEach(() => {
+        cy.fixture('example').then(function(data) {
+            this.username = data.username
+            this.password = data.password
+        })
+    })
+
 
     // it('Login without POM', () => {
 
@@ -20,12 +27,11 @@ describe('Login page test', () => {
 
     const loginPage = new LoginPage()
 
-    it('Login with POM', () => {
+    it('Login with POM', function() {
 
-        cy.visit("https://techglobal-training.com/frontend");
         cy.clickCard("Project - Login Function");
 
-        loginPage.userLogin('TechGlobal', 'Test1234')
+        loginPage.userLogin(this.username, this.password)
         loginPage.getSuccessMessage().should('be.visible')
     })
 })

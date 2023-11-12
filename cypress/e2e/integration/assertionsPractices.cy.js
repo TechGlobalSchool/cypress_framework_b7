@@ -1,7 +1,11 @@
 describe("Practices", () => {
-  it("Implicit Assertions Practice", () => {
+
+  beforeEach(() => {
     cy.visit("https://techglobal-training.com/frontend");
-    cy.get(".cards").contains("Html Elements").click();
+    cy.clickCard('Html Elements')
+  })
+
+  it("Implicit Assertions Practice", () => {
 
     /**
      * 1. Go to 'https://techglobal-training.com/frontend'
@@ -134,9 +138,6 @@ describe("Practices", () => {
      * Click on the "Submit" button.
      * Validate result message displays "Your Green MacBook Pro 13 will be delivered to you."
      */
-
-    cy.visit("https://techglobal-training.com/frontend");
-    cy.clickCard('Html Elements')
 
     const product = 'MacBook Pro 13'
     const color = 'Green'
