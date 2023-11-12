@@ -66,3 +66,15 @@ What is Framework ?
 		- We execute 2 important suites in our frameowrk which are Smoke, and Regression and they are integrated to our CI/CD
 		- We are using Jenkins as a CI/CD tool and we currently have 12 smoke tests, and 365 regressions that are running on CI/CD
 		- We are running smoke tests every day 8 AM in the morning while we are running our Regression suite at the end of each sprint, or triggered after any hotfix.
+
+
+
+		*** TEST CASE REVIEW MEETING ***
+
+		This is the meeting where PO, Tester, and Developers gets together, and discuss about the test cases tester wrote. 
+		
+		They mainly cover three topics in this meeting:
+
+		1. Test Coverage		=> Making sure tester has enough of test coverage for the functionality being tested.
+		2. Smoke or Manual 		=> PO, Tester, or Dev might think some functionalities is better to handle in a Smoke suite in case it needs extra attention.
+		3. Manual vs Regression => Some test cases requires too much effort and time can be considered to handle with Manual testing. So as a tester, you or PO might think this is better to do for more reliable results.
