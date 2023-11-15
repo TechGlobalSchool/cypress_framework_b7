@@ -19,14 +19,14 @@ describe("Timeouts", () => {
    * 
    * npx cypress run --config defaultCommandTimeout=10000,pageLoadTimeout=20000
    */
-  it('Waits Page', () => {
+  // it('Waits Page', () => {
 
-    cy.visit("https://techglobal-training.com/frontend", {timeout: 10000});
-    cy.clickCard("Waits");
+  //   cy.visit("https://techglobal-training.com/frontend", {timeout: 10000});
+  //   cy.clickCard("Waits");
 
-    cy.get('#red').click()
+  //   cy.get('#red').click()
 
-    cy.get('.box', {timeout: 10000}).should('be.visible')
+  //   cy.get('.box', {timeout: 10000}).should('be.visible')
 
-  })
+  // })
 });

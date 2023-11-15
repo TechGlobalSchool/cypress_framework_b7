@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("File Download & File Upload", () => {
+describe("File Download & File Upload", { tags: ["@smoke", "@regression"] }, () => {
   /**
    * Go to https://techglobal-training.com/frontend/
    * Click on the "File Download" card
