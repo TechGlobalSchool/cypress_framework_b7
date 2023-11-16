@@ -29,6 +29,6 @@ describe("Login page test", () => {
     cy.clickCard("Project - Login Function");
 
     loginPage.userLogin(this.username, this.password);
-    loginPage.getSuccessMessage().should("not.be.visible");
+    loginPage.getSuccessMessage().should("be.visible");
   });
 });
