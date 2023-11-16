@@ -19,5 +19,6 @@ jobs:
       - name: Artifacts
         uses: actions/upload-artifact@v3
         with:
-            name: mochawesome-report
+            name: reports
             path: cypress/reports/html/index.html
+            if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
